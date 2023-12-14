@@ -8,6 +8,11 @@ body {
   font-family: sans-serif;
   overflow-y: hidden;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
+}
+
+form {
+  display: flex;
+  flex-direction: column;
 }
