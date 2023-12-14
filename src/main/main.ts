@@ -12,8 +12,11 @@ import path from 'path';
 import { app, BrowserWindow, shell, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
+import YAML from 'yaml';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
+
+const fs = require('fs');
 
 class AppUpdater {
   constructor() {
@@ -21,6 +24,25 @@ class AppUpdater {
     autoUpdater.logger = log;
     autoUpdater.checkForUpdatesAndNotify();
   }
+}
+function writeYaml(event, formData) {
+  console.log(`I received: `, formData);
+
+  const monsterWriteDetails = formData[0];
+
+  const { bestiaryDirectory, ...monsterDetails } = monsterWriteDetails;
+
+  const monsterYaml = YAML.stringify(monsterDetails).trimEnd();
+
+  const stringToWrite = `\`\`\`statblock\n${monsterYaml}\n\`\`\``;
+
+  const fullPath = `${bestiaryDirectory}${monsterDetails.name}.md`;
+
+  console.log('Im about to write: \n', stringToWrite);
+  console.log('writing to: ', fullPath);
+  fs.writeFile(fullPath, stringToWrite, (error) =>
+    error ? console.log('error', error) : console.log('good to go '),
+  );
 }
 
 let mainWindow: BrowserWindow | null = null;
@@ -30,6 +52,7 @@ ipcMain.on('ipc-example', async (event, arg) => {
   console.log(msgTemplate(arg));
   event.reply('ipc-example', msgTemplate('pong'));
 });
+ipcMain.on('write-yaml', writeYaml);
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');

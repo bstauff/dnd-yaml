@@ -3,7 +3,6 @@
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import YAML from 'yaml';
 
 type Inputs = {
   bestiaryDirectory: string;
@@ -13,7 +12,8 @@ type Inputs = {
 };
 
 function createFile(data: Inputs) {
-  console.log(YAML.stringify(data));
+  console.log('sending...');
+  window.electron.ipcRenderer.sendMessage('write-yaml', [data]);
 }
 
 function StatblockForm() {
