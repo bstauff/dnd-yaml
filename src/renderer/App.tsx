@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/jsx-props-no-spreading */
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
@@ -42,9 +41,13 @@ function StatblockForm() {
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
-        <label>
+        <label htmlFor="bestiary-directory">
           Bestiary Directory
-          <input {...methods.register('bestiaryDirectory')} tabIndex={-1} />
+          <input
+            id="bestiary-directory"
+            {...methods.register('bestiaryDirectory')}
+            tabIndex={-1}
+          />
         </label>
         <BasicStats />
         <AbilityScores />
