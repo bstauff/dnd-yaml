@@ -28,21 +28,26 @@ class AppUpdater {
 function writeYaml(event, formData) {
   console.log(`I received: `, formData);
 
-  const monsterWriteDetails = formData[0];
+  const saves = formData[0];
 
-  const { bestiaryDirectory, ...monsterDetails } = monsterWriteDetails;
+  const saveYaml = YAML.stringify(saves).trimEnd();
+  console.log(saveYaml);
 
-  const monsterYaml = YAML.stringify(monsterDetails).trimEnd();
+  // const monsterWriteDetails = formData[0];
 
-  const stringToWrite = `\`\`\`statblock\n${monsterYaml}\n\`\`\``;
+  // const { bestiaryDirectory, ...monsterDetails } = monsterWriteDetails;
 
-  const fullPath = `${bestiaryDirectory}${monsterDetails.name}.md`;
+  // const monsterYaml = YAML.stringify(monsterDetails).trimEnd();
 
-  console.log('Im about to write: \n', stringToWrite);
-  console.log('writing to: ', fullPath);
-  fs.writeFile(fullPath, stringToWrite, (error) =>
-    error ? console.log('error', error) : console.log('good to go '),
-  );
+  // const stringToWrite = `\`\`\`statblock\n${monsterYaml}\n\`\`\``;
+
+  // const fullPath = `${bestiaryDirectory}${monsterDetails.name}.md`;
+
+  // console.log('Im about to write: \n', stringToWrite);
+  // console.log('writing to: ', fullPath);
+  // fs.writeFile(fullPath, stringToWrite, (error) =>
+  //   error ? console.log('error', error) : console.log('good to go '),
+  // );
 }
 
 let mainWindow: BrowserWindow | null = null;

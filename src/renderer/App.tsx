@@ -2,8 +2,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import SavesForm from './SavesForm';
+import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
+import SkillSavesForm from './SkillSavesForm';
+import BasicStats from './BasicStats';
 
 export type Inputs = {
   bestiaryDirectory: string;
@@ -16,14 +17,7 @@ export type Inputs = {
   hit_dice: string;
   speed: string;
   stats: number[];
-  saves: {
-    Str: number;
-    Dex: number;
-    Con: number;
-    Int: number;
-    Wis: number;
-    Cha: number;
-  };
+  saves: { [key: string]: number };
   skillsaves: { [key: string]: number };
   damage_vulnerabilities: string;
   damage_resistances: string;
@@ -40,86 +34,53 @@ function createFile(data: Inputs) {
 }
 
 function StatblockForm() {
-  const {
-    register,
-    handleSubmit,
-    // formState: { errors },
-  } = useForm<Inputs>();
+  const methods = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = createFile;
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label>
-        Bestiary Directory
-        <input {...register('bestiaryDirectory')} tabIndex={-1} />
-      </label>
-      <label>
-        Name
-        <input {...register('name')} tabIndex={0} />
-      </label>
-      <label>
-        Size
-        <input {...register('size')} />
-      </label>
-      <label>
-        Type
-        <input {...register('type')} />
-      </label>
-      <label>
-        alignment
-        <input {...register('alignment')} />
-      </label>
-      <label>
-        ac
-        <input {...register('ac')} />
-      </label>
-      <label>
-        hp
-        <input {...register('hp')} />
-      </label>
-      <label>
-        hit_dice
-        <input {...register('hit_dice')} />
-      </label>
-      <label>
-        speed
-        <input {...register('speed')} />
-      </label>
-      <label>
-        stats
-        <input {...register('stats')} />
-      </label>
-      <SavesForm register={register} />
-      <label>
-        damage_vulnerabilities
-        <input {...register('damage_vulnerabilities')} />
-      </label>
-      <label>
-        damage_resistances
-        <input {...register('damage_resistances')} />
-      </label>
-      <label>
-        damage_immunities
-        <input {...register('damage_immunities')} />
-      </label>
-      <label>
-        condition_immunities
-        <input {...register('condition_immunities')} />
-      </label>
-      <label>
-        senses
-        <input {...register('senses')} />
-      </label>
-      <label>
-        languages
-        <input {...register('languages')} />
-      </label>
-      <label>
-        cr
-        <input {...register('cr')} />
-      </label>
-      <input type="submit" />
-    </form>
+    <FormProvider {...methods}>
+      <form onSubmit={methods.handleSubmit(onSubmit)}>
+        <label>
+          Bestiary Directory
+          <input {...methods.register('bestiaryDirectory')} tabIndex={-1} />
+        </label>
+        <BasicStats />
+        <label>
+          stats
+          <input {...methods.register('stats')} />
+        </label>
+        <SkillSavesForm />
+        <label>
+          damage_vulnerabilities
+          <input {...methods.register('damage_vulnerabilities')} />
+        </label>
+        <label>
+          damage_resistances
+          <input {...methods.register('damage_resistances')} />
+        </label>
+        <label>
+          damage_immunities
+          <input {...methods.register('damage_immunities')} />
+        </label>
+        <label>
+          condition_immunities
+          <input {...methods.register('condition_immunities')} />
+        </label>
+        <label>
+          senses
+          <input {...methods.register('senses')} />
+        </label>
+        <label>
+          languages
+          <input {...methods.register('languages')} />
+        </label>
+        <label>
+          cr
+          <input {...methods.register('cr')} />
+        </label>
+        <input type="submit" />
+      </form>
+    </FormProvider>
   );
 }
 
