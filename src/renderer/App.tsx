@@ -32,8 +32,7 @@ export type Inputs = {
 };
 
 function createFile(data: Inputs) {
-  console.log('sending...', data);
-  // window.electron.ipcRenderer.sendMessage('write-yaml', [data]);
+  window.electron.ipcRenderer.sendMessage('write-yaml', [data]);
 }
 
 function StatblockForm() {
