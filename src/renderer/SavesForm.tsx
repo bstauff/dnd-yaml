@@ -1,32 +1,32 @@
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
-export default function SkillSavesForm() {
+export default function SavesForm() {
   const { register, control } = useFormContext();
   const { fields, append, remove } = useFieldArray({
     control,
-    name: 'skillSaves',
+    name: 'saves',
   });
 
   return (
     <>
-      <h1>Skill Saves</h1>
+      <h1>Saves</h1>
       <hr />
       <form>
         <ul>
           {fields.map((item, index) => (
             <li key={item.id}>
-              <label htmlFor={`skill-${index}`}>
-                Skill
+              <label htmlFor={`ability-${index}`}>
+                Ability
                 <input
-                  id={`skill-${index}`}
-                  {...register(`skillSaves.${index}.skill`)}
+                  id={`ability-${index}`}
+                  {...register(`saves.${index}.ability`)}
                 />
               </label>
               <label htmlFor={`modifier-${index}`}>
                 Mod
                 <input
                   id={`modifier-${index}`}
-                  {...register(`skillSaves.${index}.modifier`)}
+                  {...register(`saves.${index}.modifier`)}
                 />
               </label>
               <button type="button" onClick={() => remove(index)}>

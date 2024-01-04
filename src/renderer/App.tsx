@@ -7,6 +7,7 @@ import SkillSavesForm from './SkillSavesForm';
 import BasicStats from './BasicStats';
 import AbilityScores from './AbilityScores';
 import Resistances from './Resistances';
+import SavesForm from './SavesForm';
 
 export type Inputs = {
   bestiaryDirectory: string;
@@ -48,6 +49,7 @@ function StatblockForm() {
         </label>
         <BasicStats />
         <AbilityScores />
+        <SavesForm />
         <SkillSavesForm />
         <Resistances />
         <input type="submit" />
