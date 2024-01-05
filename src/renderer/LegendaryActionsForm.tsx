@@ -1,33 +1,33 @@
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
-export default function TraitsForm() {
+export default function LegendaryActionsForm() {
   const { register, control } = useFormContext();
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: 'traits',
+    name: 'legendaryActions',
   });
 
   return (
     <>
-      <h1>Traits</h1>
+      <h1>Legendary Actions</h1>
       <hr />
       <form>
         <ul>
           {fields.map((item, index) => (
             <li key={item.id}>
-              <label htmlFor={`traits-name-${index}`}>
+              <label htmlFor={`legendaryActions-name-${index}`}>
                 Name
                 <input
-                  id={`traits-name-${index}`}
-                  {...register(`traits.${index}.name`)}
+                  id={`legendaryActions-name-${index}`}
+                  {...register(`legendaryActions.${index}.name`)}
                 />
               </label>
-              <label htmlFor={`traits-description-${index}`}>
+              <label htmlFor={`legendaryActions-description-${index}`}>
                 Description
                 <input
-                  id={`traits-description-${index}`}
-                  {...register(`traits.${index}.desc`)}
+                  id={`legendaryActions-description-${index}`}
+                  {...register(`legendaryActions.${index}.desc`)}
                 />
               </label>
               <button type="button" onClick={() => remove(index)}>

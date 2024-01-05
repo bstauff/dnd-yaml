@@ -9,6 +9,7 @@ import Resistances from './Resistances';
 import SavesForm from './SavesForm';
 import TraitsForm from './TraitsForm';
 import ActionsForm from './ActionsForm';
+import LegendaryActionsForm from './LegendaryActionsForm';
 
 export type Inputs = {
   bestiaryDirectory: string;
@@ -58,6 +59,7 @@ function StatblockForm() {
         <Resistances />
         <TraitsForm />
         <ActionsForm />
+        <LegendaryActionsForm />
         <input type="submit" />
       </form>
     </FormProvider>
