@@ -12,6 +12,7 @@ import ActionsForm from './ActionsForm';
 import LegendaryActionsForm from './LegendaryActionsForm';
 import BonusActionsForm from './BonusActionsForm';
 import ReactionsForm from './ReactionsForm';
+import SpellcastingForm from './ SpellcastingForm';
 
 export type Inputs = {
   bestiaryDirectory: string;
@@ -64,6 +65,7 @@ function StatblockForm() {
         <LegendaryActionsForm />
         <BonusActionsForm />
         <ReactionsForm />
+        <SpellcastingForm />
         <input type="submit" />
       </form>
     </FormProvider>
