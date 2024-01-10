@@ -18,6 +18,10 @@ import { resolveHtmlPath } from './util';
 
 const fs = require('fs');
 
+interface SpellData {
+  [key: number]: string;
+}
+
 class AppUpdater {
   constructor() {
     log.transports.file.level = 'info';
@@ -25,29 +29,56 @@ class AppUpdater {
     autoUpdater.checkForUpdatesAndNotify();
   }
 }
+
+function getYamlString(bestiaryData) {
+  // TODO Something is wrong with how modifiers are printing out
+  // TODO stats needs to be an array of numbers, not just a string
+
+  const convertedSpells = bestiaryData.spells.map(
+    (spell: { level: number; 'spell-list': string }) => {
+      const foo: SpellData = {};
+      foo[spell.level] = spell['spell-list'];
+      return foo;
+    },
+  );
+
+  const spellDescription = ['some cool spell description'].concat(
+    convertedSpells,
+  );
+
+  const converted = {
+    ...bestiaryData,
+    spells: spellDescription,
+  };
+
+  delete converted['spellcasting-description'];
+  delete converted.bestiaryDirectory;
+
+  const yamlString = YAML.stringify(converted).trimEnd();
+
+  return yamlString;
+}
+
 function writeYaml(event, formData) {
   console.log(`I received: `, JSON.stringify(formData));
 
-  const saves = formData[0];
+  const bestiaryData = formData[0];
 
-  const saveYaml = YAML.stringify(saves).trimEnd();
-  console.log(saveYaml);
+  const bestiaryYaml = getYamlString(bestiaryData);
 
-  // const monsterWriteDetails = formData[0];
+  console.log(bestiaryYaml);
 
-  // const { bestiaryDirectory, ...monsterDetails } = monsterWriteDetails;
+  const { bestiaryDirectory } = bestiaryData;
 
-  // const monsterYaml = YAML.stringify(monsterDetails).trimEnd();
+  const stringToWrite = `\`\`\`statblock\n${bestiaryYaml}\n\`\`\``;
 
-  // const stringToWrite = `\`\`\`statblock\n${monsterYaml}\n\`\`\``;
+  const fullPath = `${bestiaryDirectory}${bestiaryData.name}.md`;
 
-  // const fullPath = `${bestiaryDirectory}${monsterDetails.name}.md`;
-
-  // console.log('Im about to write: \n', stringToWrite);
-  // console.log('writing to: ', fullPath);
-  // fs.writeFile(fullPath, stringToWrite, (error) =>
-  //   error ? console.log('error', error) : console.log('good to go '),
-  // );
+  console.log('Im about to write: \n', stringToWrite);
+  console.log('writing to: ', fullPath);
+  fs.writeFile(fullPath, stringToWrite, (error) =>
+    error ? console.log('error', error) : console.log('good to go '),
+  );
 }
 
 let mainWindow: BrowserWindow | null = null;
