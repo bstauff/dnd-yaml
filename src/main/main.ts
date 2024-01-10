@@ -26,7 +26,7 @@ class AppUpdater {
   }
 }
 function writeYaml(event, formData) {
-  console.log(`I received: `, formData);
+  console.log(`I received: `, JSON.stringify(formData));
 
   const saves = formData[0];
 

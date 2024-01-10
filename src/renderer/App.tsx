@@ -13,6 +13,7 @@ import LegendaryActionsForm from './LegendaryActionsForm';
 import BonusActionsForm from './BonusActionsForm';
 import ReactionsForm from './ReactionsForm';
 import SpellcastingForm from './ SpellcastingForm';
+import Senses from './Senses';
 
 export type Inputs = {
   bestiaryDirectory: string;
@@ -60,6 +61,7 @@ function StatblockForm() {
         <SavesForm />
         <SkillSavesForm />
         <Resistances />
+        <Senses />
         <TraitsForm />
         <ActionsForm />
         <LegendaryActionsForm />

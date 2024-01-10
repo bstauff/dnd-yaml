@@ -1,0 +1,54 @@
+[
+  {
+    "bestiaryDirectory": "",
+    "name": "Anointer",
+    "size": "Medium",
+    "type": "Humanoid",
+    "alignment": "Lawful Good",
+    "ac": "16",
+    "hp": "130",
+    "hit_dice": "20d8 + 40",
+    "speed": "30",
+    "stats": "18,10,14,10,17,11",
+    "damage_vulnerabilities": "",
+    "damage_resistances": "",
+    "damage_immunities": "",
+    "condition_immunities": "",
+    "senses": "Passive Perception 16",
+    "languages": "Celestial, Infernal",
+    "cr": "8",
+    "saves": [
+      { "ability": "Str", "modifier": "7" },
+      { "ability": "Wis", "modifier": "6" }
+    ],
+    "skillSaves": [
+      { "skill": "Athletics", "modifier": "7" },
+      { "skill": "Perception", "modifier": "6" },
+      { "skill": "Religion", "modifier": "3" }
+    ],
+    "traits": [
+      {
+        "name": "Blessed Weapon",
+        "desc": "The anointer’s attacks are magical and it has advantage on attack rolls against evil-aligned creatures"
+      },
+      {
+        "name": "Restless Traveler",
+        "desc": "While traveling, the anointer can choose to ignore one level of exhaustion"
+      }
+    ],
+    "actions": [
+      {
+        "name": "Censer Flail",
+        "desc": "Melee Weapon Attack: +7 to hit, reach 5 ft., one target. Hit: 8 (1d8 + 4) bludgeoning damage plus 6 (1d12) fire damage. Also, because of the smell that the censer gives off, enemies within 10 feet of the anointer have disadvantage on saving throws against spells."
+      }
+    ],
+    "legendaryActions": [],
+    "bonus-actions": [],
+    "reactions": [],
+    "spellcasting-description": "The Anointer casts spells or something",
+    "spells": [
+      { "level": "3", "spell-list": "Fireball" },
+      { "level": "1", "spell-list": "Magic Missile, Sleep" }
+    ]
+  }
+]
