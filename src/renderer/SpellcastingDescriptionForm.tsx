@@ -5,12 +5,10 @@ export default function SpellcastingDescriptionForm() {
   return (
     <>
       <h2>Description</h2>
-      <form>
-        <input
-          id="spellcasting-description"
-          {...register('spellcasting-description')}
-        />
-      </form>
+      <input
+        id="spellcasting-description"
+        {...register('spellcasting-description')}
+      />
     </>
   );
 }

@@ -66,6 +66,7 @@ function StatblockForm() {
         <BonusActionsForm />
         <ReactionsForm />
         <SpellcastingForm />
+        <hr />
         <input type="submit" />
       </form>
     </FormProvider>

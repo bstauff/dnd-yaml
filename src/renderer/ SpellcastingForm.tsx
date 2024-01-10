@@ -28,9 +28,11 @@ export default function SpellcastingForm() {
       ) : (
         <p>not using spellcasting</p>
       )}
-      <button type="button" onClick={() => setUseSpellCasting(true)}>
-        Add Spellcasting
-      </button>
+      {!useSpellCasting ? (
+        <button type="button" onClick={() => setUseSpellCasting(true)}>
+          Add Spellcasting
+        </button>
+      ) : null}
     </>
   );
 }

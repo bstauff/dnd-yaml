@@ -11,34 +11,32 @@ export default function SavesForm() {
     <>
       <h1>Saves</h1>
       <hr />
-      <form>
-        <ul>
-          {fields.map((item, index) => (
-            <li key={item.id}>
-              <label htmlFor={`ability-${index}`}>
-                Ability
-                <input
-                  id={`ability-${index}`}
-                  {...register(`saves.${index}.ability`)}
-                />
-              </label>
-              <label htmlFor={`modifier-${index}`}>
-                Mod
-                <input
-                  id={`modifier-${index}`}
-                  {...register(`saves.${index}.modifier`)}
-                />
-              </label>
-              <button type="button" onClick={() => remove(index)}>
-                Delete
-              </button>
-            </li>
-          ))}
-        </ul>
-        <button type="button" onClick={() => append(undefined, undefined)}>
-          add
-        </button>
-      </form>
+      <ul>
+        {fields.map((item, index) => (
+          <li key={item.id}>
+            <label htmlFor={`ability-${index}`}>
+              Ability
+              <input
+                id={`ability-${index}`}
+                {...register(`saves.${index}.ability`)}
+              />
+            </label>
+            <label htmlFor={`modifier-${index}`}>
+              Mod
+              <input
+                id={`modifier-${index}`}
+                {...register(`saves.${index}.modifier`)}
+              />
+            </label>
+            <button type="button" onClick={() => remove(index)}>
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
+      <button type="button" onClick={() => append(undefined, undefined)}>
+        add
+      </button>
     </>
   );
 }
