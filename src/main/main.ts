@@ -30,6 +30,13 @@ class AppUpdater {
   }
 }
 
+function splitASI(asiString: string): number[] {
+  return asiString
+    .trim()
+    .split(',')
+    .map((scoreString) => Number(scoreString));
+}
+
 function getYamlString(bestiaryData) {
   // TODO Something is wrong with how modifiers are printing out
   // TODO stats needs to be an array of numbers, not just a string
@@ -49,6 +56,7 @@ function getYamlString(bestiaryData) {
   const converted = {
     ...bestiaryData,
     spells: spellDescription,
+    stats: splitASI(bestiaryData.stats),
   };
 
   delete converted['spellcasting-description'];
