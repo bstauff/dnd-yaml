@@ -39,7 +39,7 @@ function splitASI(asiString: string): number[] {
 
 function getYamlString(bestiaryData) {
   // TODO Something is wrong with how modifiers are printing out
-  // TODO stats needs to be an array of numbers, not just a string
+  // TODO check that the ASI split is correct
 
   const convertedSpells = bestiaryData.spells.map(
     (spell: { level: number; 'spell-list': string }) => {
