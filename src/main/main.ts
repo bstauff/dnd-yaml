@@ -44,6 +44,14 @@ function splitASI(asiString: string): number[] {
 function getYamlString(bestiaryData) {
   // TODO Something is wrong with how modifiers are printing out
   // TODO check that the ASI split is correct
+  const convertedSkillSaves = bestiaryData.skillSaves.map(
+    (skillSave: { skill: string; modifier: number }) => {
+      const skillSaveData: SaveData = {};
+      skillSaveData[skillSave.skill] = skillSave.modifier;
+      return skillSaveData;
+    },
+  );
+
   const convertedSaves = bestiaryData.saves.map(
     (save: { ability: string; modifier: number }) => {
       const saveData: SaveData = {};
@@ -69,6 +77,7 @@ function getYamlString(bestiaryData) {
     spells: spellDescription,
     stats: splitASI(bestiaryData.stats),
     saves: convertedSaves,
+    skillsaves: convertedSkillSaves,
   };
 
   delete converted['spellcasting-description'];
