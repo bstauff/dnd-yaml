@@ -22,6 +22,10 @@ interface SpellData {
   [key: number]: string;
 }
 
+interface SaveData {
+  [key: string]: number;
+}
+
 class AppUpdater {
   constructor() {
     log.transports.file.level = 'info';
@@ -40,6 +44,13 @@ function splitASI(asiString: string): number[] {
 function getYamlString(bestiaryData) {
   // TODO Something is wrong with how modifiers are printing out
   // TODO check that the ASI split is correct
+  const convertedSaves = bestiaryData.saves.map(
+    (save: { ability: string; modifier: number }) => {
+      const saveData: SaveData = {};
+      saveData[save.ability] = save.modifier;
+      return saveData;
+    },
+  );
 
   const convertedSpells = bestiaryData.spells.map(
     (spell: { level: number; 'spell-list': string }) => {
@@ -57,6 +68,7 @@ function getYamlString(bestiaryData) {
     ...bestiaryData,
     spells: spellDescription,
     stats: splitASI(bestiaryData.stats),
+    saves: convertedSaves,
   };
 
   delete converted['spellcasting-description'];
