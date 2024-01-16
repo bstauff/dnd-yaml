@@ -70,6 +70,9 @@ function StatblockForm() {
         <SpellcastingForm />
         <hr />
         <input type="submit" />
+        <button type="button" onClick={() => methods.reset()}>
+          Reset
+        </button>
       </form>
     </FormProvider>
   );
