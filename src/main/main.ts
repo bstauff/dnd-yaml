@@ -68,7 +68,7 @@ function getYamlString(bestiaryData) {
     },
   );
 
-  const spellDescription = ['some cool spell description'].concat(
+  const spellDescription = [bestiaryData['spellcasting-description']].concat(
     convertedSpells,
   );
 
